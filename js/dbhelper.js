@@ -2,10 +2,8 @@
  * Common database helper functions.
  */
 class DBHelper {
-
   /**
    * Database URL.
-   * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
     const port = 5500 // Change this to your server port
@@ -140,42 +138,31 @@ class DBHelper {
   }
 
   /**
-   * Restaurant page URL.
-   */
+  * Restaurant page URL.
+  */
   static urlForRestaurant(restaurant) {
     return (`./restaurant.html?id=${restaurant.id}`);
   }
 
   /**
-   * Restaurant image URL.
-   */
+  * Restaurant image URL.
+  */
   static imageUrlForRestaurant(restaurant) {
     return (`/img/${restaurant.photograph}`);
   }
 
   /**
-   * Map marker for a restaurant.
-   */
-   static mapMarkerForRestaurant(restaurant, map) {
+  * Map marker for a restaurant.
+  */
+  static mapMarkerForRestaurant(restaurant, map) {
     // https://leafletjs.com/reference-1.3.0.html#marker  
     const marker = new L.marker([restaurant.latlng.lat, restaurant.latlng.lng],
-      {title: restaurant.name,
-      alt: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant)
+      {
+        title: restaurant.name,
+        alt: restaurant.name,
+        url: DBHelper.urlForRestaurant(restaurant)
       })
-      marker.addTo(newMap);
+    marker.addTo(newMap);
     return marker;
-  } 
-  /* static mapMarkerForRestaurant(restaurant, map) {
-    const marker = new google.maps.Marker({
-      position: restaurant.latlng,
-      title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP}
-    );
-    return marker;
-  } */
-
+  }
 }
-
